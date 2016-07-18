@@ -17,6 +17,17 @@ public class PlayerMotor : MonoBehaviour {
     public float jumpForce = 2.1f;
     public Text textGo;
 
+    
+    private float x;
+
+    private float y;
+
+    private float z;
+
+    public float PositionXMin = -0.2f;
+    public float PositionXMax = 0.2f;
+
+
     private bool isDead = false;
 	// Use this for initialization
 	void Start () {
@@ -74,7 +85,33 @@ public class PlayerMotor : MonoBehaviour {
         moveVector.z = speed; // ранер же, постоянный прирост вперед
 
         controller.Move(moveVector * Time.deltaTime); // движение контроллера 
-	}
+
+        // Ограничить движение по вправо\влево
+
+        if (transform.position.x >= PositionXMax)
+
+        {
+
+            ConvertingExpressions();
+
+            transform.position = new Vector3(PositionXMax, y, z);
+
+        }
+
+        if (transform.position.x <= PositionXMin)
+
+        {
+
+            ConvertingExpressions();
+
+            transform.position = new Vector3(PositionXMin, y, z);
+
+        }
+
+
+
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -120,4 +157,18 @@ public class PlayerMotor : MonoBehaviour {
         isDead = true;
         GetComponent<Score>().OnDeath();
     }
+
+    //
+    void ConvertingExpressions()
+
+    {
+
+        float.TryParse(transform.position.x.ToString(), out x);
+
+        float.TryParse(transform.position.y.ToString(), out y);
+
+        float.TryParse(transform.position.z.ToString(), out z);
+
+    }
+
 }
