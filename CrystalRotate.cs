@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//красиво же
+using UnityEngine;
 using System.Collections;
 
 public class CrystalRotate : MonoBehaviour {

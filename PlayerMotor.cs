@@ -31,16 +31,18 @@ public class PlayerMotor : MonoBehaviour {
         if (isDead)
         {
             return;
-        }
-        
-      if (Time.time < animationDuration)
+        } //end if
+
+        if (Time.time < animationDuration)
         {
             
             controller.Move(Vector3.forward * speed * Time.deltaTime);
           
             return;
-        }
+        } //end if
+
         textGo.text = " ";
+
         if (controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) // если контроллер на земле 
         {
 
@@ -51,9 +53,10 @@ public class PlayerMotor : MonoBehaviour {
             
                 anaimationJump.SetBool("Jump", true);
             //  
-          
 
-        }
+
+        } //end if
+
         else // в противном случае в каждом кадре отнимаем результат операции чем изменяем положение обьекта
         {
             
@@ -63,7 +66,7 @@ public class PlayerMotor : MonoBehaviour {
         moveVector = Vector3.zero; // вместе записи вектор(0,0,0) 
 
         //x left&right
-        moveVector.x = Mathf.Clamp(Input.GetAxis("Horizontal"), -1, 1);  // считываем значение с управляющих кнопок
+        moveVector.x = Input.GetAxis("Horizontal");  // 
        
         //y up&down
         moveVector.y = varticalVelocity; // гравитация
@@ -80,11 +83,11 @@ public class PlayerMotor : MonoBehaviour {
             Destroy(other.gameObject);
             power += 1;
             powerText.text = "x " + ((int)power).ToString();
-            
-        }
-            //  other.gameObject.SetActive(false);
-           
-       // через свич зделать разные варианты смертей от лазеров
+
+        }  //end if
+           //  other.gameObject.SetActive(false);
+
+        // через свич зделать разные варианты смертей от лазеров
         else {
 
             Death();
@@ -97,7 +100,7 @@ public class PlayerMotor : MonoBehaviour {
     {
         speed += modifier;
     }
-     // hero hit
+     // вариант в котором при столкновении с чем угодно можно ловить событие
    /* private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.point.z > transform.position.z + controller.radius)

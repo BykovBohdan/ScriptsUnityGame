@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 public class Score : MonoBehaviour {
 
-    private float score = 0.0f; // переменная хранящая очки(или время)
+    private float score = 0.0f; // на данный момент это время которое продержался игрок
 
     public Text scroreText;
 
@@ -20,14 +20,14 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isDead)
+        if (isDead)  // проверяем жив ли наш персонаж
         {
             return;
-        }
+        } //end if
         if (score >= scoreToNextLevel)
         {
             SpeedUp();
-        }
+        } //end if
 
 
         score += Time.deltaTime;
@@ -37,15 +37,15 @@ public class Score : MonoBehaviour {
 
     void SpeedUp()
     {
-        if (difficultyLevel == maxDifficultyLevel)
+        if (difficultyLevel == maxDifficultyLevel) //дабы скорость имела вменяемый предел
         {
             return;
-        }
+        } //end if
 
-        scoreToNextLevel *= 2; // каждый переход сложнее;
+        scoreToNextLevel *= 2; // возрастающая сложность перехода на след. скорость
         difficultyLevel += 0.05f;
 
-        GetComponent<PlayerMotor>().SetSpeed(difficultyLevel);
+        GetComponent<PlayerMotor>().SetSpeed(difficultyLevel); // обращаемся к классу игрока
     }
 
     public void OnDeath()

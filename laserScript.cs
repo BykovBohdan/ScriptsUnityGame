@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// создаем ленту лазера
+using UnityEngine;
 using System.Collections;
 
 public class laserScript : MonoBehaviour {
@@ -7,7 +8,7 @@ public class laserScript : MonoBehaviour {
 	LineRenderer laserLine;
 	// Use this for initialization
 	void Start () {
-		laserLine = GetComponentInChildren<LineRenderer> ();
+		laserLine = GetComponentInChildren<LineRenderer> (); 
 		laserLine.SetWidth (.1f, .1f);
 	}
 	
